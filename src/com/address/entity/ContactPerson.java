@@ -1,4 +1,4 @@
-package com.address.service;
+package com.address.entity;
 
 public class ContactPerson {
 	

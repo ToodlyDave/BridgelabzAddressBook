@@ -1,10 +1,17 @@
 package com.address.service;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
+
+import com.address.entity.AddressBook;
+import com.address.entity.ContactPerson;
 
 public class AddressBookService {
 
 	public void addContact() {
+		
+		ArrayList<ContactPerson> contacts = AddressBook.getContacts();
 		
 		Scanner scan = new Scanner(System.in);
 		System.out.print(" Please enter the first name: ");
@@ -31,7 +38,19 @@ public class AddressBookService {
 		System.out.print(" Please enter the email: ");
 		String email = scan.next();
 		
-		ContactPerson obj = new ContactPerson(firstName, lastName, address, city, state, zip, phoneNumber, email);
-		System.out.println(obj);
+		ContactPerson newContact = new ContactPerson(firstName, lastName, address, city, state, zip, phoneNumber, email);
+		contacts.add(newContact);
+		AddressBook.setContacts(contacts);
+		 
+		System.out.println(newContact);
+	}
+	
+	public void printContacts() {
+		
+		ArrayList<ContactPerson> contacts = AddressBook.getContacts();
+		
+		for (ContactPerson contactPerson : contacts) {
+			System.out.println(contactPerson);
+		}
 	}
 }
