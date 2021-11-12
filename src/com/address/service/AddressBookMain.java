@@ -14,7 +14,7 @@ public class AddressBookMain {
 		AddressBookService obj = new AddressBookService();
 		
 		while (true) {
-			System.out.println(" 1. Add\n 2. Print Contacts\n 3. Exit ");
+			System.out.println(" 1. Add\n 2. Print Contacts\n 3. Edit Contact\n 4. Exit ");
 			System.out.println(" Please enter your choice: ");
 			
 			ch = scan.nextInt();
@@ -27,6 +27,9 @@ public class AddressBookMain {
 				obj.printContacts();
 				break;
 			case 3:
+				obj.editContact();
+				break;
+			case 4:
 				System.out.println(" Good bye!! ");
 				scan.close();
 				return;
