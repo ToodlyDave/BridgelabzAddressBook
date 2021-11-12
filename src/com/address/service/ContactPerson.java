@@ -1,4 +1,4 @@
-package com.address;
+package com.address.service;
 
 public class ContactPerson {
 	
@@ -7,7 +7,7 @@ public class ContactPerson {
 	private String address;
 	private String city;
 	private String state;
-	private int zip;
+	private int zip;	
 	private int phoneNumber;
 	private String email;
 
@@ -24,7 +24,8 @@ public class ContactPerson {
 		this.email = email;
 	}
 	
-	public void printContact() {
+	@Override
+	public String toString() {
 		System.out.println("\n\n ==== " + firstName + " " + lastName + " ====");
 		System.out.println(" Address: " + this.address);
 		System.out.println(" City: " + this.city);
@@ -32,5 +33,6 @@ public class ContactPerson {
 		System.out.println(" Zip: " + this.zip);
 		System.out.println(" Phone number: " + this.phoneNumber);
 		System.out.println(" Email: " + this.email);
+		return "";
 	}
 }

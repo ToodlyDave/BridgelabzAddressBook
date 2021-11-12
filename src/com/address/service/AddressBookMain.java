@@ -1,4 +1,4 @@
-package com.address;
+package com.address.service;
 
 public class AddressBookMain {
 
@@ -6,8 +6,7 @@ public class AddressBookMain {
 
 		System.out.println(" Welcome to Address Book Program");
 		
-		AddressBook obj = new AddressBook();
+		AddressBookService obj = new AddressBookService();
 		obj.addContact();
 	}
-
 }

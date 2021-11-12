@@ -1,8 +1,8 @@
-package com.address;
+package com.address.service;
 
 import java.util.Scanner;
 
-public class AddressBook {
+public class AddressBookService {
 
 	public void addContact() {
 		
@@ -32,10 +32,6 @@ public class AddressBook {
 		String email = scan.next();
 		
 		ContactPerson obj = new ContactPerson(firstName, lastName, address, city, state, zip, phoneNumber, email);
-		printSpecificContact(obj);
-	}
-	
-	public void printSpecificContact(ContactPerson obj) {
-		obj.printContact();
+		System.out.println(obj);
 	}
 }
