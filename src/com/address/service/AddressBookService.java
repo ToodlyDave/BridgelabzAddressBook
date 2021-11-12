@@ -69,7 +69,10 @@ public class AddressBookService {
 		}
 	}
 	
-	public ContactPerson findContact(String name) {
+	public ContactPerson findContact() {
+		
+		System.out.println(" Please enter the name of the contact you want to edit: ");
+		String name = scan.next();
 		
 		ArrayList<ContactPerson> contacts = AddressBook.getContacts();
 		
@@ -84,9 +87,7 @@ public class AddressBookService {
 	
 	public void editContact() {
 		
-		System.out.println(" Please enter the name of the contact you want to edit: ");
-		String name = scan.next();
-		ContactPerson obj = findContact(name);
+		ContactPerson obj = findContact();
 		
 		if(obj == null) {
 			System.out.println(" Couldn't find contact");
@@ -97,5 +98,18 @@ public class AddressBookService {
 		obj.setContacts(firstName, lastName, address, city, state, zip, phoneNumber, email);
 		System.out.println(" the new contact is : ");
 		System.out.println(obj);
+	}
+	
+	public void deleteContact() {
+		
+		ContactPerson obj = findContact();
+		
+		if(obj == null) {
+			System.out.println(" Couldn't find contact");
+			return;
+		}
+		
+		ArrayList<ContactPerson> contacts = AddressBook.getContacts();
+		contacts.remove(obj);
 	}
 }
