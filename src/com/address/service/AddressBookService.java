@@ -20,6 +20,13 @@ public class AddressBookService {
 	
 	Scanner scan = new Scanner(System.in);
 	
+	
+	
+	public AddressBookService() {
+		super();
+		scan.useDelimiter("\r?\n");
+	}
+
 	public void getContact() {
 		
 		System.out.print(" Please enter the first name: ");
@@ -72,9 +79,24 @@ public class AddressBookService {
 	public ContactPerson findContact(String name) {
 		
 		ArrayList<ContactPerson> contacts = AddressBook.getContacts();
+		int count = 0;
+		ContactPerson temp = null;
 		
 		for (ContactPerson contactPerson : contacts) {
 			if ( contactPerson.getFirstName().equals(name) ) {
+				count++;
+				temp = contactPerson;
+			}
+		}
+		
+		if (count < 2) {
+			return temp;
+		}
+		
+		System.out.print(" There are multiple contacts with that name.\n Please enter their email id to confirm: ");
+		String checkEmail = scan.next();
+		for (ContactPerson contactPerson : contacts) {
+			if ( contactPerson.getFirstName().equals(name) && contactPerson.getEmail().equals(checkEmail)) {
 				return contactPerson;
 			}
 		}
@@ -84,7 +106,7 @@ public class AddressBookService {
 	
 	public void editContact() {
 		
-		System.out.println(" Please enter the name of the contact you want to edit: ");
+		System.out.print(" Please enter the name of the contact you want to edit: ");
 		String name = scan.next();
 		ContactPerson obj = findContact(name);
 		
@@ -93,8 +115,40 @@ public class AddressBookService {
 			return;
 		}
 		
-		getContact();
-		obj.setContacts(firstName, lastName, address, city, state, zip, phoneNumber, email);
+		System.out.println(" Please enter which detail you want to edit: ");
+		System.out.print(" 1. Address\n 2. City\n 3. State\n 4. Zip\n 5. Phone number\n Choice: ");
+		int ch = scan.nextInt();
+		
+		switch(ch) {
+		case 1: 
+			System.out.print(" Please enter the new address: ");
+			String newAddress = scan.next();
+			obj.setAddress(newAddress);
+			break;
+		case 2: 
+			System.out.print(" Please enter the new city: ");
+			String newCity = scan.next();
+			obj.setCity(newCity);
+			break;
+		case 3: 
+			System.out.print(" Please enter the name of the new state: ");
+			String newState = scan.next();
+			obj.setState(newState);
+			break;
+		case 4: 
+			System.out.print(" Please enter the new zip code: ");
+			int newZip = scan.nextInt();
+			obj.setZip(newZip);
+			break;
+		case 5: 
+			System.out.println(" Please enter the new phone number: ");
+			int newPhone = scan.nextInt();
+			obj.setPhoneNumber(newPhone);
+			break;
+		default:
+			System.out.println(" Please enter a valid choice!");
+			
+		}
 		System.out.println(" the new contact is : ");
 		System.out.println(obj);
 	}
