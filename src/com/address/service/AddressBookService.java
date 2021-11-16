@@ -77,7 +77,7 @@ public class AddressBookService {
 	
 	public ContactPerson findContact() {
 		
-		System.out.println(" Please enter the name of the contact you want to edit: ");
+		System.out.println(" Please enter the name of the contact: ");
 		String name = scan.next();
 		
 		ArrayList<ContactPerson> contacts = AddressBook.getContacts();
@@ -165,4 +165,14 @@ public class AddressBookService {
 		ArrayList<ContactPerson> contacts = AddressBook.getContacts();
 		contacts.remove(obj);
 	}
+
+	public void addMultipleContacts() {
+		System.out.println(" Please enter how many contacts you want to add: ");
+		int n = scan.nextInt();
+		
+		for (int i = 0; i < n; i++) {
+			addContact();
+		}
+	}
+	
 }

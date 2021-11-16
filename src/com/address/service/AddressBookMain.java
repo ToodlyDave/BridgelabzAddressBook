@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class AddressBookMain {
 
 	public static void main(String[] args) {
-
+		
 		System.out.println(" Welcome to Address Book Program");
 		
 		Scanner scan = new Scanner(System.in);
@@ -14,7 +14,7 @@ public class AddressBookMain {
 		AddressBookService obj = new AddressBookService();
 		
 		while (true) {
-			System.out.println(" 1. Add\n 2. Print Contacts\n 3. Edit Contact\n 4. Delete Contact\n 5. Exit ");
+			System.out.println(" 1. Add\n 2. Add Multiple Contacts\n 3. Print Contacts\n 4. Edit Contact\n 5. Delete Contact\n 6. Exit ");
 			System.out.println(" Please enter your choice: ");
 			
 			ch = scan.nextInt();
@@ -24,18 +24,23 @@ public class AddressBookMain {
 				obj.addContact();
 				break;
 			case 2: 
-				obj.printContacts();
+				obj.addMultipleContacts();
 				break;
 			case 3:
-				obj.editContact();
+				obj.printContacts();
 				break;
 			case 4:
-				obj.deleteContact();
+				obj.editContact();
 				break;
 			case 5:
+				obj.deleteContact();
+				break;
+			case 6:
 				System.out.println(" Good bye!! ");
 				scan.close();
 				return;
+			default:
+				System.out.println(" Please enter a valid input");
 			}
 		}
 	}
