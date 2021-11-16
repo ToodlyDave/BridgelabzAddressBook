@@ -4,14 +4,30 @@ import java.util.ArrayList;
 
 public class AddressBook {
 
-	public static ArrayList<ContactPerson> contacts = new ArrayList<ContactPerson>();
+	private ArrayList<ContactPerson> contacts = new ArrayList<ContactPerson>();
+	private String name;
 
-	public static ArrayList<ContactPerson> getContacts() {
+	public ArrayList<ContactPerson> getContacts() {
 		return contacts;
 	}
 
-	public static void setContacts(ArrayList<ContactPerson> contacts) {
-		AddressBook.contacts = contacts;
+	public void setContacts(ArrayList<ContactPerson> contacts) {
+		this.contacts = contacts;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public AddressBook(String name) {
+		super();
+		this.name = name;
+	}
+	
+	
 }
 

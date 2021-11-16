@@ -12,10 +12,11 @@ public class AddressBookMain {
 		int ch;
 		
 		AddressBookService obj = new AddressBookService();
+		AddressRegistryService adObj = new AddressRegistryService();
 		
 		while (true) {
-			System.out.println(" 1. Add\n 2. Add Multiple Contacts\n 3. Print Contacts\n 4. Edit Contact\n 5. Delete Contact\n 6. Exit ");
-			System.out.println(" Please enter your choice: ");
+			 System.out.println(" 1. Add Contact\n 2. Add Multiple Contacts\n 3. Print Contacts\n 4. Edit Contact\n 5. Delete Contact\n 6. Add Address Book\n 7. Exit ");
+			System.out.print(" Please enter your choice: ");
 			
 			ch = scan.nextInt();
 			
@@ -36,6 +37,9 @@ public class AddressBookMain {
 				obj.deleteContact();
 				break;
 			case 6:
+				adObj.addAddressBook();
+				break;
+			case 7: 
 				System.out.println(" Good bye!! ");
 				scan.close();
 				return;

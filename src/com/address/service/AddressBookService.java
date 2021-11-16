@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.address.entity.AddressBook;
+import com.address.entity.AddressBookRegistry;
 import com.address.entity.ContactPerson;
 
 public class AddressBookService {
@@ -17,16 +18,15 @@ public class AddressBookService {
 	int phoneNumber;
 	String email;
 	
+	AddressBook adBook;
 	Scanner scan = new Scanner(System.in);
-	
-	
 	
 	public AddressBookService() {
 		super();
 		scan.useDelimiter("\r?\n");
 	}
 
-	public void getContact() {
+	private void readContactInfo() {
 		
 		System.out.print(" Please enter the first name: ");
 		firstName = scan.next();
@@ -56,31 +56,40 @@ public class AddressBookService {
 
 	public void addContact() {
 		
-		ArrayList<ContactPerson> contacts = AddressBook.getContacts();		
+		adBook = findAddressBook();
 		
-		getContact();
+		if (adBook == null) {
+			return;
+		}
+		
+		ArrayList<ContactPerson> contacts = adBook.getContacts();		
+		
+		readContactInfo();
 		ContactPerson newContact = new ContactPerson(firstName, lastName, address, city, state, zip, phoneNumber, email);
 		contacts.add(newContact);
-		AddressBook.setContacts(contacts);
+		adBook.setContacts(contacts);
 		 
 		System.out.println(newContact);
 	}
 	
 	public void printContacts() {
 		
-		ArrayList<ContactPerson> contacts = AddressBook.getContacts();
+		ArrayList<AddressBook> temp = AddressBookRegistry.getAddressBookList();
 		
-		for (ContactPerson contactPerson : contacts) {
-			System.out.println(contactPerson);
+		for (AddressBook addressBook : temp) {
+			System.out.println(" ******** " + addressBook.getName() + " ********");
+			for (ContactPerson contactPerson : addressBook.getContacts()) {
+				System.out.println(contactPerson);
+			}
 		}
 	}
 	
-	public ContactPerson findContact() {
+	private ContactPerson findContact(AddressBook adBook) {
 		
-		System.out.println(" Please enter the name of the contact: ");
+		System.out.print(" Please enter the name of the contact: ");
 		String name = scan.next();
 		
-		ArrayList<ContactPerson> contacts = AddressBook.getContacts();
+		ArrayList<ContactPerson> contacts = adBook.getContacts();
 		int count = 0;
 		ContactPerson temp = null;
 		
@@ -106,10 +115,38 @@ public class AddressBookService {
 		return null;
 	}
 	
+	private AddressBook findAddressBook() {
+		
+		
+		ArrayList<AddressBook> temp = AddressBookRegistry.getAddressBookList();
+		
+		if (temp.size() == 0) {
+			System.out.println(" Please create an address book first!");
+			return null;
+		}
+		
+		System.out.print(" Please enter the name of the address book: ");
+		String adBookName = scan.next();
+		
+		for (AddressBook addressBook : temp) {
+			if (addressBook.getName().equals(adBookName)) {
+				return addressBook;
+			}
+		}
+		
+		System.out.println(" Address book does not exist!");
+		return null;
+	}
+	
 	public void editContact() {
 		
-		ContactPerson obj = findContact();
+		adBook = findAddressBook();
 		
+		if (adBook == null) {
+			return;
+		}
+		
+		ContactPerson obj = findContact(adBook);
 		if(obj == null) {
 			System.out.println(" Couldn't find contact");
 			return;
@@ -155,14 +192,19 @@ public class AddressBookService {
 	
 	public void deleteContact() {
 		
-		ContactPerson obj = findContact();
+		adBook = findAddressBook();
 		
+		if (adBook == null) {
+			return;
+		}
+		
+		ContactPerson obj = findContact(adBook);
 		if(obj == null) {
 			System.out.println(" Couldn't find contact");
 			return;
 		}
 		
-		ArrayList<ContactPerson> contacts = AddressBook.getContacts();
+		ArrayList<ContactPerson> contacts = adBook.getContacts();
 		contacts.remove(obj);
 	}
 
