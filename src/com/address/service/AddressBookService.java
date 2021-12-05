@@ -9,16 +9,9 @@ import com.address.entity.ContactPerson;
 
 public class AddressBookService {
 	
-	String firstName;
-	String lastName;
-	String address;
-	String city;
-	String state;
-	int zip;
-	int phoneNumber;
-	String email;
 	
-	AddressBook adBook;
+	
+//	AddressBook adBook;
 	Scanner scan = new Scanner(System.in);
 	
 	public AddressBookService() {
@@ -26,37 +19,9 @@ public class AddressBookService {
 		scan.useDelimiter("\r?\n");
 	}
 
-	private void readContactInfo() {
+	public void addContact(ContactPerson contactPerson) {
 		
-		System.out.print(" Please enter the first name: ");
-		firstName = scan.next();
-		
-		System.out.print(" Please enter the last name: ");
-		lastName = scan.next();
-		
-		System.out.print(" Please enter the address: ");
-		address = scan.next();
-		
-		System.out.print(" Please enter the city: ");
-		city = scan.next();
-		
-		System.out.print(" Please enter the state: ");
-		state = scan.next();
-		
-		System.out.print(" Please enter the zip: ");
-		zip = scan.nextInt();
-		
-		System.out.print(" Please enter the phone number: ");
-		phoneNumber = scan.nextInt();
-		
-		System.out.print(" Please enter the email: ");
-		email = scan.next();
-		
-	}
-
-	public void addContact() {
-		
-		adBook = findAddressBook();
+		AddressBook adBook = findAddressBook();
 		
 		if (adBook == null) {
 			return;
@@ -64,8 +29,7 @@ public class AddressBookService {
 		
 		ArrayList<ContactPerson> contacts = adBook.getContacts();		
 		
-		readContactInfo();
-		ContactPerson newContact = new ContactPerson(firstName, lastName, address, city, state, zip, phoneNumber, email);
+		ContactPerson newContact = contactPerson;
 		contacts.add(newContact);
 		adBook.setContacts(contacts);
 		 
@@ -140,7 +104,7 @@ public class AddressBookService {
 	
 	public void editContact() {
 		
-		adBook = findAddressBook();
+		AddressBook adBook = findAddressBook();
 		
 		if (adBook == null) {
 			return;
@@ -192,7 +156,7 @@ public class AddressBookService {
 	
 	public void deleteContact() {
 		
-		adBook = findAddressBook();
+		AddressBook adBook = findAddressBook();
 		
 		if (adBook == null) {
 			return;
@@ -208,13 +172,4 @@ public class AddressBookService {
 		contacts.remove(obj);
 	}
 
-	public void addMultipleContacts() {
-		System.out.println(" Please enter how many contacts you want to add: ");
-		int n = scan.nextInt();
-		
-		for (int i = 0; i < n; i++) {
-			addContact();
-		}
-	}
-	
 }
