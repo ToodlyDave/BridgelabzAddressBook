@@ -50,7 +50,8 @@ public class AddressBookMain {
 
 		while (true) {
 			System.out.println(
-					" 1. Add Contact\n 2. Add Multiple Contacts\n 3. Print Contacts\n 4. Edit Contact\n 5. Delete Contact\n 6. Add Address Book\n 7. Exit ");
+					" 1. Add Contact\n 2. Add Multiple Contacts\n 3. Print Contacts\n 4. Edit Contact\n"
+					+ " 5. Delete Contact\n 6. Add Address Book\n 7. Search by City/State\n 8. Exit ");
 			System.out.print(" Please enter your choice: ");
 
 			ch = scan.next();
@@ -80,6 +81,9 @@ public class AddressBookMain {
 				adObj.addAddressBook();
 				break;
 			case "7":
+				adObj.searchPersonAll();
+				break;
+			case "8": 
 				System.out.println(" Good bye!! ");
 				scan.close();
 				return;
