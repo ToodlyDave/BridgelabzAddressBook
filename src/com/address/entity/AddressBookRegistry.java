@@ -1,16 +1,16 @@
 package com.address.entity;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
 public class AddressBookRegistry {
 
-	private static ArrayList<AddressBook> AddressBookList = new ArrayList<AddressBook>();
+	private static HashSet<AddressBook> AddressBookList = new HashSet<>();
 
-	public static  ArrayList<AddressBook> getAddressBookList() {
+	public static  HashSet<AddressBook> getAddressBookList() {
 		return AddressBookList;
 	}
 
-	public static void setAddressBookList(ArrayList<AddressBook> addressBookList) {
+	public static void setAddressBookList(HashSet<AddressBook> addressBookList) {
 		AddressBookList = addressBookList;
 	}
 	
