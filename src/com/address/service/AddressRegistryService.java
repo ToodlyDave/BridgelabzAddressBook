@@ -81,5 +81,28 @@ public class AddressRegistryService {
 				
 		}
 	}
+	
+	public void countPersons(String ch) {
+		switch(ch) {
+		case "c":
+		case "city":
+			System.out.println(" Please enter the name of the city: ");
+			String city = scan.next();
+			AddressBookRegistry.getCityPersonMap().entrySet().stream()
+				.filter(contact -> contact.getKey().equals(city))
+				.forEach(contact -> System.out.println("Number of ppl in " + city + ": " + contact.getValue().size()));
+			break;
+		case "s":
+		case "state":
+			System.out.println(" Please enter the name of the state: ");
+			String state = scan.next();
+			AddressBookRegistry.getStatePersonMap().entrySet().stream()
+				.filter(contact -> contact.getKey().equals(state) )
+				.forEach(contact -> System.out.println("Number of ppl in " + state + ": " + contact.getValue().size()));
+			break;
+		default:
+			System.out.println(" Please enter a valid choice!");
+		}
+	}
 
 }
