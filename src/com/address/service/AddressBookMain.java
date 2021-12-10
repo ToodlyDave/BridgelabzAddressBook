@@ -81,7 +81,11 @@ public class AddressBookMain {
 				adObj.addAddressBook();
 				break;
 			case "7":
-				adObj.searchPersonAll();
+				System.out.print(" Please enter the name of the person: ");
+				String name = scan.next();
+				System.out.print(" Do you want to search by city or state: ");
+				String choice = scan.next();
+				adObj.searchPersonAll(name, choice);
 				break;
 			case "8": 
 				System.out.println(" Good bye!! ");

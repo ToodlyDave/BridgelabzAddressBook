@@ -24,9 +24,7 @@ public class AddressRegistryService {
 
 	}
 	
-	public void searchPersonAll() {
-		System.out.print(" Do you want to search by city or state: ");
-		String ch = scan.next();
+	public void searchPersonAll(String name, String ch) {
 		
 		switch(ch) {
 		case "c":
@@ -34,13 +32,10 @@ public class AddressRegistryService {
 			System.out.print(" Please enter the name of the city: ");
 			String city = scan.next();
 			for (AddressBook adbook : AddressBookRegistry.getAddressBookList()) {
-				for (ContactPerson contact : adbook.getContacts()) {
-					if(contact.getCity().equals(city)) {
-						System.out.println(" hi there");
-						System.out.println(" **** " + adbook.getName() + " ****");
-						System.out.println(contact);
-					}
-				}
+					adbook.getContacts().stream()
+					.filter(contact -> contact.getCity().equals(city))
+					.filter(contact -> contact.getFirstName().equals(name))
+					.forEach(contact -> System.out.println(contact));
 			}
 			break;
 		case "s":
@@ -48,15 +43,13 @@ public class AddressRegistryService {
 			System.out.print(" Please enter the name of the state: ");
 			String state = scan.next();
 			for (AddressBook adbook : AddressBookRegistry.getAddressBookList()) {
-				for (ContactPerson contact : adbook.getContacts()) {
-					if(contact.getState().equals(state)) {
-						System.out.println(" **** " + adbook.getName() + " ****");
-						System.out.println(contact);
-					}
-				}
+				adbook.getContacts().stream()
+					.filter(contact -> contact.getState().equals(state))
+					.filter(contact -> contact.getFirstName().equals(name))
+					.forEach(contact -> System.out.println(contact));
 			}
 			break;
-			
+				
 		}
 	}
 
