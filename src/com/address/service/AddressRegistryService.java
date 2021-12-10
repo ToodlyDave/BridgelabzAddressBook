@@ -1,7 +1,10 @@
 package com.address.service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import com.address.entity.AddressBook;
 import com.address.entity.AddressBookRegistry;
@@ -22,6 +25,30 @@ public class AddressRegistryService {
 
 		AddressBookRegistry.setAddressBookList(temp);
 
+	}
+	
+	public void viewPersonAll(String ch) {
+		switch(ch) {
+		case "c":
+		case "city":
+			System.out.print(" Please enter the name of the city: ");
+			String city = scan.next();
+			AddressBookRegistry.getCityPersonMap().entrySet().stream()
+				.filter(contact -> contact.getKey().equals(city))
+				.forEach(contact -> System.out.println(contact.getValue()) );
+			break;
+		case "s":
+		case "state":
+			System.out.print(" Please enter the name of the state: ");
+			String state = scan.next();
+			AddressBookRegistry.getStatePersonMap().entrySet().stream()
+			.filter(contact -> contact.getKey().equals(state))
+			.forEach(contact -> System.out.println(contact.getValue()) );
+			break;
+			
+		default:
+			System.out.println(" Please enter a valid choice!");
+		}
 	}
 	
 	public void searchPersonAll(String name, String ch) {
@@ -49,6 +76,8 @@ public class AddressRegistryService {
 					.forEach(contact -> System.out.println(contact));
 			}
 			break;
+		default: 
+			System.out.println(" Please enter a valid choice!");
 				
 		}
 	}

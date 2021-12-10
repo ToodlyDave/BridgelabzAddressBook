@@ -1,5 +1,7 @@
 package com.address.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Scanner;
 
@@ -24,6 +26,17 @@ public class AddressBookService {
 		if (adBook == null) {
 			return;
 		}
+		
+		HashMap<String, ArrayList<ContactPerson>> cityPersonMap = AddressBookRegistry.getCityPersonMap();
+		HashMap<String, ArrayList<ContactPerson>> statePersonMap = AddressBookRegistry.getStatePersonMap();
+		
+		if(!cityPersonMap.containsKey(contactPerson.getCity()) )
+			cityPersonMap.put(contactPerson.getCity(), new ArrayList<ContactPerson>());
+		cityPersonMap.get(contactPerson.getCity()).add(contactPerson);
+		
+		if(!statePersonMap.containsKey(contactPerson.getState()) )
+			statePersonMap.put(contactPerson.getState(), new ArrayList<ContactPerson>());
+		statePersonMap.get(contactPerson.getState()).add(contactPerson);
 
 		HashSet<ContactPerson> contacts = adBook.getContacts();
 
