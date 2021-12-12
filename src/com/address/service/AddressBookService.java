@@ -19,13 +19,35 @@ public class AddressBookService {
 		scan.useDelimiter("\r?\n");
 	}
 
-	public void printSortedNamesContacts() {
+	public void printSortedContacts(String ch) {
 		AddressBook adBook = findAddressBook();
 
-		adBook.getContacts().stream()
-				.sorted((contact1, contact2) -> contact1.getFirstName()
-				.compareTo(contact2.getFirstName()))
-				.forEach(contact -> System.out.println(contact));
+		switch (ch) {
+		case "name":
+		case "n":
+			adBook.getContacts().stream()
+					.sorted((contact1, contact2) -> contact1.getFirstName().compareTo(contact2.getFirstName()))
+					.forEach(contact -> System.out.println(contact));
+			break;
+		case "state":
+		case "s":
+			adBook.getContacts().stream()
+					.sorted((contact1, contact2) -> contact1.getState().compareTo(contact2.getState()))
+					.forEach(contact -> System.out.println(contact));
+			break;
+		case "city":
+		case "c":
+			adBook.getContacts().stream()
+			.sorted((contact1, contact2) -> contact1.getCity().compareTo(contact2.getCity()))
+			.forEach(contact -> System.out.println(contact));
+			break;
+		case "zip":
+		case "z":
+			adBook.getContacts().stream()
+			.sorted((contact1, contact2) -> Integer.valueOf(contact1.getZip()).compareTo(contact2.getZip()))
+			.forEach(contact -> System.out.println(contact));
+			break;
+		}
 	}
 
 	public void addContact(ContactPerson contactPerson) {

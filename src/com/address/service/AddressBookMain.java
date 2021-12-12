@@ -93,12 +93,14 @@ public class AddressBookMain {
 				adObj.viewPersonAll(choice1);
 				break;
 			case "9":
-				System.out.println(" Do you want to sort by city or state: ");
+				System.out.print(" Do you want to count by city or state: ");
 				String choice2 = scan.next();
 				adObj.countPersons(choice2);
 				break;
 			case "10":
-				obj.printSortedNamesContacts();
+				System.out.print(" Please enter how you want to sort(name/city/state/zip): ");
+				String choice3 = scan.next();
+				obj.printSortedContacts(choice3);
 				break;
 			case "11":
 				System.out.println(" Good bye!! ");
