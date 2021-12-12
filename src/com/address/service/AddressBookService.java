@@ -19,6 +19,15 @@ public class AddressBookService {
 		scan.useDelimiter("\r?\n");
 	}
 
+	public void printSortedNamesContacts() {
+		AddressBook adBook = findAddressBook();
+
+		adBook.getContacts().stream()
+				.sorted((contact1, contact2) -> contact1.getFirstName()
+				.compareTo(contact2.getFirstName()))
+				.forEach(contact -> System.out.println(contact));
+	}
+
 	public void addContact(ContactPerson contactPerson) {
 
 		AddressBook adBook = findAddressBook();
@@ -26,15 +35,15 @@ public class AddressBookService {
 		if (adBook == null) {
 			return;
 		}
-		
+
 		HashMap<String, ArrayList<ContactPerson>> cityPersonMap = AddressBookRegistry.getCityPersonMap();
 		HashMap<String, ArrayList<ContactPerson>> statePersonMap = AddressBookRegistry.getStatePersonMap();
-		
-		if(!cityPersonMap.containsKey(contactPerson.getCity()) )
+
+		if (!cityPersonMap.containsKey(contactPerson.getCity()))
 			cityPersonMap.put(contactPerson.getCity(), new ArrayList<ContactPerson>());
 		cityPersonMap.get(contactPerson.getCity()).add(contactPerson);
-		
-		if(!statePersonMap.containsKey(contactPerson.getState()) )
+
+		if (!statePersonMap.containsKey(contactPerson.getState()))
 			statePersonMap.put(contactPerson.getState(), new ArrayList<ContactPerson>());
 		statePersonMap.get(contactPerson.getState()).add(contactPerson);
 
