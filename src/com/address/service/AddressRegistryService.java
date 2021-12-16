@@ -1,5 +1,7 @@
 package com.address.service;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -102,6 +104,25 @@ public class AddressRegistryService {
 			break;
 		default:
 			System.out.println(" Please enter a valid choice!");
+		}
+	}
+	
+	public void writeIntoFile() {
+		HashSet<AddressBook> temp = AddressBookRegistry.getAddressBookList();
+		
+		try {
+			FileWriter fw = new FileWriter("src/output.txt");
+			fw.write(temp.toString());
+			
+//			for (AddressBook addressBook : temp) {
+//				fw.write(" *** " + addressBook.getName() + " ***");
+//				fw.write(addressBook.getContacts().toString());
+//			}
+			
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

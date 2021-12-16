@@ -93,14 +93,14 @@ public class ContactPerson {
 
 	@Override
 	public String toString() {
-		System.out.println("\n ==== " + firstName + " " + lastName + " ====");
-		System.out.println(" Address: " + this.address);
-		System.out.println(" City: " + this.city);
-		System.out.println(" State: " + this.state);
-		System.out.println(" Zip: " + this.zip);
-		System.out.println(" Phone number: " + this.phoneNumber);
-		System.out.println(" Email: " + this.email);
-		return "";
+		return "\n ==== " + firstName + " " + lastName + " ====\n"
+				+ " Address: " + this.address + "\n"
+				+ " City: " + this.city + "\n"
+				+ " State: " + this.state + "\n"
+				+ " Zip: " + this.zip + "\n" 
+				+ " Phone number: " + this.phoneNumber + "\n"
+				+ " Email: " + this.email + "\n";
+				
 	}
 
 	public void setContacts(String firstName, String lastName, String address, String city, String state, int zip,

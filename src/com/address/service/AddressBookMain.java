@@ -51,7 +51,8 @@ public class AddressBookMain {
 		while (true) {
 			System.out.println(" 1. Add Contact\n 2. Add Multiple Contacts\n 3. Print Contacts\n 4. Edit Contact\n"
 					+ " 5. Delete Contact\n 6. Add Address Book\n 7. Search by City/State\n "
-					+ "8. View by City/State\n 9. Count by City/State\n 10. Sort Contacts by name\n 11. Exit ");
+					+ "8. View by City/State\n 9. Count by City/State\n"
+					+ " 10. Sort Contacts by name\n 11. Write into file\n 12. Exit ");
 			System.out.print(" Please enter your choice: ");
 
 			ch = scan.next();
@@ -103,6 +104,9 @@ public class AddressBookMain {
 				obj.printSortedContacts(choice3);
 				break;
 			case "11":
+				adObj.writeIntoFile();
+				break;
+			case "12":
 				System.out.println(" Good bye!! ");
 				scan.close();
 				return;

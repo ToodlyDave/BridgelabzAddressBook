@@ -46,4 +46,9 @@ public class AddressBook {
 		this.name = name;
 	}
 
+	@Override
+	public String toString() {
+		return "AddressBook [contacts=" + contacts + ", name=" + name + "]";
+	}
+
 }
