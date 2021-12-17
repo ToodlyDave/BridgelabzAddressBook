@@ -38,14 +38,14 @@ public class AddressBookService {
 		case "city":
 		case "c":
 			adBook.getContacts().stream()
-			.sorted((contact1, contact2) -> contact1.getCity().compareTo(contact2.getCity()))
-			.forEach(contact -> System.out.println(contact));
+					.sorted((contact1, contact2) -> contact1.getCity().compareTo(contact2.getCity()))
+					.forEach(contact -> System.out.println(contact));
 			break;
 		case "zip":
 		case "z":
 			adBook.getContacts().stream()
-			.sorted((contact1, contact2) -> Integer.valueOf(contact1.getZip()).compareTo(contact2.getZip()))
-			.forEach(contact -> System.out.println(contact));
+					.sorted((contact1, contact2) -> Integer.valueOf(contact1.getZip()).compareTo(contact2.getZip()))
+					.forEach(contact -> System.out.println(contact));
 			break;
 		}
 	}

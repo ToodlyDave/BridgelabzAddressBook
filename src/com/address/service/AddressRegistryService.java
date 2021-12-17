@@ -201,7 +201,7 @@ public class AddressRegistryService {
 		}
 
 	}
-	
+
 	public void readJson() {
 		Gson gson = new Gson();
 		try {
@@ -219,7 +219,7 @@ public class AddressRegistryService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

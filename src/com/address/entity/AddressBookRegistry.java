@@ -34,7 +34,5 @@ public class AddressBookRegistry {
 	public static void setAddressBookList(HashSet<AddressBook> addressBookList) {
 		AddressBookList = addressBookList;
 	}
-	
-	
 
 }
