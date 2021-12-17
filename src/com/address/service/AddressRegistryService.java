@@ -1,5 +1,8 @@
 package com.address.service;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,43 +31,41 @@ public class AddressRegistryService {
 		AddressBookRegistry.setAddressBookList(temp);
 
 	}
-	
+
 	public void viewPersonAll(String ch) {
-		switch(ch) {
+		switch (ch) {
 		case "c":
 		case "city":
 			System.out.print(" Please enter the name of the city: ");
 			String city = scan.next();
-			AddressBookRegistry.getCityPersonMap().entrySet().stream()
-				.filter(contact -> contact.getKey().equals(city))
-				.forEach(contact -> System.out.println(contact.getValue()) );
+			AddressBookRegistry.getCityPersonMap().entrySet().stream().filter(contact -> contact.getKey().equals(city))
+					.forEach(contact -> System.out.println(contact.getValue()));
 			break;
 		case "s":
 		case "state":
 			System.out.print(" Please enter the name of the state: ");
 			String state = scan.next();
 			AddressBookRegistry.getStatePersonMap().entrySet().stream()
-			.filter(contact -> contact.getKey().equals(state))
-			.forEach(contact -> System.out.println(contact.getValue()) );
+					.filter(contact -> contact.getKey().equals(state))
+					.forEach(contact -> System.out.println(contact.getValue()));
 			break;
-			
+
 		default:
 			System.out.println(" Please enter a valid choice!");
 		}
 	}
-	
+
 	public void searchPersonAll(String name, String ch) {
-		
-		switch(ch) {
+
+		switch (ch) {
 		case "c":
 		case "city":
 			System.out.print(" Please enter the name of the city: ");
 			String city = scan.next();
 			for (AddressBook adbook : AddressBookRegistry.getAddressBookList()) {
-					adbook.getContacts().stream()
-					.filter(contact -> contact.getCity().equals(city))
-					.filter(contact -> contact.getFirstName().equals(name))
-					.forEach(contact -> System.out.println(contact));
+				adbook.getContacts().stream().filter(contact -> contact.getCity().equals(city))
+						.filter(contact -> contact.getFirstName().equals(name))
+						.forEach(contact -> System.out.println(contact));
 			}
 			break;
 		case "s":
@@ -72,55 +73,62 @@ public class AddressRegistryService {
 			System.out.print(" Please enter the name of the state: ");
 			String state = scan.next();
 			for (AddressBook adbook : AddressBookRegistry.getAddressBookList()) {
-				adbook.getContacts().stream()
-					.filter(contact -> contact.getState().equals(state))
-					.filter(contact -> contact.getFirstName().equals(name))
-					.forEach(contact -> System.out.println(contact));
+				adbook.getContacts().stream().filter(contact -> contact.getState().equals(state))
+						.filter(contact -> contact.getFirstName().equals(name))
+						.forEach(contact -> System.out.println(contact));
 			}
 			break;
-		default: 
+		default:
 			System.out.println(" Please enter a valid choice!");
-				
+
 		}
 	}
-	
+
 	public void countPersons(String ch) {
-		switch(ch) {
+		switch (ch) {
 		case "c":
 		case "city":
 			System.out.println(" Please enter the name of the city: ");
 			String city = scan.next();
-			AddressBookRegistry.getCityPersonMap().entrySet().stream()
-				.filter(contact -> contact.getKey().equals(city))
-				.forEach(contact -> System.out.println("Number of ppl in " + city + ": " + contact.getValue().size()));
+			AddressBookRegistry.getCityPersonMap().entrySet().stream().filter(contact -> contact.getKey().equals(city))
+					.forEach(contact -> System.out
+							.println("Number of ppl in " + city + ": " + contact.getValue().size()));
 			break;
 		case "s":
 		case "state":
 			System.out.println(" Please enter the name of the state: ");
 			String state = scan.next();
 			AddressBookRegistry.getStatePersonMap().entrySet().stream()
-				.filter(contact -> contact.getKey().equals(state) )
-				.forEach(contact -> System.out.println("Number of ppl in " + state + ": " + contact.getValue().size()));
+					.filter(contact -> contact.getKey().equals(state)).forEach(contact -> System.out
+							.println("Number of ppl in " + state + ": " + contact.getValue().size()));
 			break;
 		default:
 			System.out.println(" Please enter a valid choice!");
 		}
 	}
-	
+
 	public void writeIntoFile() {
 		HashSet<AddressBook> temp = AddressBookRegistry.getAddressBookList();
-		
+
 		try {
 			FileWriter fw = new FileWriter("src/output.txt");
 			fw.write(temp.toString());
-			
-//			for (AddressBook addressBook : temp) {
-//				fw.write(" *** " + addressBook.getName() + " ***");
-//				fw.write(addressBook.getContacts().toString());
-//			}
-			
 			fw.close();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void readFromFile() {
+
+		Scanner scan;
+		try {
+			scan = new Scanner(new File("src/output.txt"));
+			while (scan.hasNext()) {
+				System.out.println(scan.nextLine());
+			}
+		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
