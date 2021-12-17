@@ -11,6 +11,8 @@ import java.util.Scanner;
 import com.address.entity.AddressBook;
 import com.address.entity.AddressBookRegistry;
 import com.address.entity.ContactPerson;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvValidationException;
@@ -170,7 +172,7 @@ public class AddressRegistryService {
 
 				System.out.println(newContact);
 			}
-			
+
 			creader.close();
 			fr.close();
 		} catch (FileNotFoundException e) {
@@ -183,6 +185,41 @@ public class AddressRegistryService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public void writeJson() {
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		String output = gson.toJson(AddressBookRegistry.getAddressBookList());
+
+		try {
+			FileWriter fwriter = new FileWriter("src/output.json");
+			fwriter.write(output);
+			fwriter.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
+	public void readJson() {
+		Gson gson = new Gson();
+		try {
+			FileReader freader = new FileReader("src/output.json");
+//			HashSet<AddressBook> temp = new HashSet<>();
+			Object temp = gson.fromJson(freader, Object.class);
+			System.out.println(temp);
+//			for (AddressBook addressBook : temp) {
+//				System.out.println(" *** " + addressBook.getName() + " ***");
+//				for (ContactPerson contact : addressBook.getContacts()) {
+//					System.out.println(contact);
+//				}
+//			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }

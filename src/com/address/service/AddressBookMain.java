@@ -55,7 +55,9 @@ public class AddressBookMain {
 					+ " 10. Sort Contacts by name\n 11. Write into file\n 12. Read from file\n"
 					+ " 13. Write as CSV"
 					+ "\n 14. Read CSV from file \n"
-					+ " 15. Exit ");
+					+ " 15. Write into JSON \n"
+					+ " 16. Read from JSON \n"
+					+ " 17. Exit ");
 			System.out.print(" Please enter your choice: ");
 
 			ch = scan.next();
@@ -119,6 +121,12 @@ public class AddressBookMain {
 				adObj.readCSV();
 				break;
 			case "15":
+				adObj.writeJson();
+				break;
+			case "16":
+				adObj.readJson();
+				break;
+			case "17":
 				System.out.println(" Good bye!! ");
 				scan.close();
 				return;
