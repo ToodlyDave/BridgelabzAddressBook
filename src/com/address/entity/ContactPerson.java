@@ -102,6 +102,17 @@ public class ContactPerson {
 				+ " Email: " + this.email + "\n";
 				
 	}
+	
+	public String toCSV() {
+		return firstName + "," 
+				+ lastName + ","
+				+ this.address + ","
+				+ this.city + ","
+				+ this.state + ","
+				+ this.zip + "," 
+				+ this.phoneNumber + ","
+				+ this.email;
+	}
 
 	public void setContacts(String firstName, String lastName, String address, String city, String state, int zip,
 			int phoneNumber, String email) {

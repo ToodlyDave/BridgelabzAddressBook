@@ -52,7 +52,10 @@ public class AddressBookMain {
 			System.out.println(" 1. Add Contact\n 2. Add Multiple Contacts\n 3. Print Contacts\n 4. Edit Contact\n"
 					+ " 5. Delete Contact\n 6. Add Address Book\n 7. Search by City/State\n "
 					+ "8. View by City/State\n 9. Count by City/State\n"
-					+ " 10. Sort Contacts by name\n 11. Write into file\n 12. Read from file\n 13. Exit ");
+					+ " 10. Sort Contacts by name\n 11. Write into file\n 12. Read from file\n"
+					+ " 13. Write as CSV"
+					+ "\n 14. Read CSV from file \n"
+					+ " 15. Exit ");
 			System.out.print(" Please enter your choice: ");
 
 			ch = scan.next();
@@ -110,6 +113,12 @@ public class AddressBookMain {
 				adObj.readFromFile();
 				break;
 			case "13":
+				adObj.writeCSV();
+				break;
+			case "14":
+				adObj.readCSV();
+				break;
+			case "15":
 				System.out.println(" Good bye!! ");
 				scan.close();
 				return;

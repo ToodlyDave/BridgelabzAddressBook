@@ -92,7 +92,7 @@ public class AddressBookService {
 		}
 	}
 
-	private ContactPerson findContact(AddressBook adBook) {
+	public ContactPerson findContact(AddressBook adBook) {
 
 		System.out.print(" Please enter the name of the contact: ");
 		String name = scan.next();
@@ -123,7 +123,7 @@ public class AddressBookService {
 		return null;
 	}
 
-	private AddressBook findAddressBook() {
+	public AddressBook findAddressBook() {
 
 		HashSet<AddressBook> temp = AddressBookRegistry.getAddressBookList();
 
