@@ -3,6 +3,8 @@ package com.address.service;
 import java.util.Scanner;
 
 import com.address.entity.ContactPerson;
+import com.address.utilities.FileHandler;
+import com.address.utilities.FileHandlerOptions;
 
 public class AddressBookMain {
 
@@ -52,9 +54,7 @@ public class AddressBookMain {
 			System.out.println(" 1. Add Contact\n 2. Add Multiple Contacts\n 3. Print Contacts\n 4. Edit Contact\n"
 					+ " 5. Delete Contact\n 6. Add Address Book\n 7. Search by City/State\n "
 					+ "8. View by City/State\n 9. Count by City/State\n"
-					+ " 10. Sort Contacts by name\n 11. Write into file\n 12. Read from file\n" + " 13. Write as CSV"
-					+ "\n 14. Read CSV from file \n" + " 15. Write into JSON \n" + " 16. Read from JSON \n"
-					+ " 17. Exit ");
+					+ " 10. Sort Contacts by name\n 11. File Operations \n" + " 12. Exit ");
 			System.out.print(" Please enter your choice: ");
 
 			ch = scan.next();
@@ -106,24 +106,37 @@ public class AddressBookMain {
 				obj.printSortedContacts(choice3);
 				break;
 			case "11":
-				adObj.writeIntoFile();
+				System.out.print(" Do you want to read or write?(r/w) : ");
+				String readOrWrite = scan.next();
+
+				System.out.println(" 1. TXT file\n 2. CSV file\n 3. JSON file");
+				System.out.print(" Please select which file format you would like to handle: ");
+				int fileType = scan.nextInt();
+
+				FileHandlerOptions operation, type;
+				if (readOrWrite.equalsIgnoreCase("r"))
+					operation = FileHandlerOptions.READ;
+				else if (readOrWrite.equalsIgnoreCase("w"))
+					operation = FileHandlerOptions.WRITE;
+				else {
+					System.out.println(" Please enter a valid choice");
+					break;
+				}
+
+				if (fileType == 1)
+					type = FileHandlerOptions.TXT;
+				else if (fileType == 2)
+					type = FileHandlerOptions.CSV;
+				else if (fileType == 3)
+					type = FileHandlerOptions.JSON;
+				else {
+					System.out.println(" Please enter a valid choice");
+					break;
+				}
+
+				FileHandler.filehandler(operation, type);
 				break;
 			case "12":
-				adObj.readFromFile();
-				break;
-			case "13":
-				adObj.writeCSV();
-				break;
-			case "14":
-				adObj.readCSV();
-				break;
-			case "15":
-				adObj.writeJson();
-				break;
-			case "16":
-				adObj.readJson();
-				break;
-			case "17":
 				System.out.println(" Good bye!! ");
 				scan.close();
 				return;
