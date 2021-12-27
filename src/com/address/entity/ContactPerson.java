@@ -14,11 +14,6 @@ public class ContactPerson {
 	private String email;
 
 	@Override
-	public int hashCode() {
-		return Objects.hash(firstName);
-	}
-
-	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -32,6 +27,20 @@ public class ContactPerson {
 
 	public String getFirstName() {
 		return firstName;
+	}
+
+	public boolean equalsCustom(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ContactPerson other = (ContactPerson) obj;
+		return Objects.equals(address, other.address) && Objects.equals(city, other.city)
+				&& Objects.equals(email, other.email) && Objects.equals(firstName, other.firstName)
+				&& Objects.equals(lastName, other.lastName) && phoneNumber == other.phoneNumber
+				&& Objects.equals(state, other.state) && zip == other.zip;
 	}
 
 	public String getEmail() {
@@ -93,25 +102,15 @@ public class ContactPerson {
 
 	@Override
 	public String toString() {
-		return "\n ==== " + firstName + " " + lastName + " ====\n"
-				+ " Address: " + this.address + "\n"
-				+ " City: " + this.city + "\n"
-				+ " State: " + this.state + "\n"
-				+ " Zip: " + this.zip + "\n" 
-				+ " Phone number: " + this.phoneNumber + "\n"
-				+ " Email: " + this.email + "\n";
-				
+		return "\n ==== " + firstName + " " + lastName + " ====\n" + " Address: " + this.address + "\n" + " City: "
+				+ this.city + "\n" + " State: " + this.state + "\n" + " Zip: " + this.zip + "\n" + " Phone number: "
+				+ this.phoneNumber + "\n" + " Email: " + this.email + "\n";
+
 	}
-	
+
 	public String toCSV() {
-		return firstName + "," 
-				+ lastName + ","
-				+ this.address + ","
-				+ this.city + ","
-				+ this.state + ","
-				+ this.zip + "," 
-				+ this.phoneNumber + ","
-				+ this.email;
+		return firstName + "," + lastName + "," + this.address + "," + this.city + "," + this.state + "," + this.zip
+				+ "," + this.phoneNumber + "," + this.email;
 	}
 
 	public void setContacts(String firstName, String lastName, String address, String city, String state, int zip,
